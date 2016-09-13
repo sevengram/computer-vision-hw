@@ -7,12 +7,13 @@
 % jianxiang.fan@colorado.edu
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear all;close all;clc;
 
 % Display a menu and get a choice
 choice = menu('Choose an option', 'Exit Program', 'Load Image', ...
     'Display Image', 'Mean Filter', 'Gaussian Filter', 'Scale Nearest', ...
-    'Scale Bilinear');
+    'Scale Bilinear', 'Fun (Swirl) filter');
 
 % Choice 1 is to exit the program
 while choice ~= 1
@@ -70,9 +71,14 @@ while choice ~= 1
             new_image = scaleBilinear(current_img, factor);
             compareImages(current_img, new_image);
             imwrite(new_image, strcat('scale_bilinear_',filename));
+        case 8
+            % Swirl	Filter
+            new_image = funFilter(current_img);
+            compareImages(current_img, new_image);
+            imwrite(new_image, strcat('swirl_',filename));
     end
     % Display menu again and get user's choice
     choice = menu('Choose an option', 'Exit Program', 'Load Image', ...
         'Display Image', 'Mean Filter', 'Gaussian Filter', 'Scale Nearest', ...
-        'Scale Bilinear');
+        'Scale Bilinear', 'Fun (Swirl) Filter');
 end

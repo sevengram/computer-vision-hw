@@ -10,7 +10,7 @@ function [ out_img ] = scaleBilinear( img, factor )
     [m,n,~] = size(img);
     x = round(m*factor); % height of out image
     y = round(n*factor); % width of out image
-    padded_img = padding_border(img);
+    padded_img = pad_border(img);
     out_img = uint8(zeros(x,y,3));
     a = (1:x)/factor;
     a2 = ceil(a);
@@ -24,14 +24,16 @@ function [ out_img ] = scaleBilinear( img, factor )
     wb2 = b - b1; % weights of b2
     for i=1:x
         for j=1:y
+            % Bilinear interpolation
             v1 = wa1(i)*padded_img(a1(i)+1,b1(j)+1,:) + wa2(i)*padded_img(a2(i)+1,b1(j)+1,:);
             v2 = wa1(i)*padded_img(a1(i)+1,b2(j)+1,:) + wa2(i)*padded_img(a2(i)+1,b2(j)+1,:);
-            out_img(i,j,:) = wb1(j)*v1+wb2(j)*v2;
+            out_img(i,j,:) = wb1(j)*v1 + wb2(j)*v2;
         end
     end
 end
 
-function [out_img] = padding_border( img )
+% Pad each border with one pixel
+function [out_img] = pad_border( img )
     [m,n,~] = size(img);
     out_img = zeros(m+2, n+2, 3);
     out_img(2:m+1, 2:n+1, :) = img;
