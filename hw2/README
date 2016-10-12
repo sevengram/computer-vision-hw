@@ -1,0 +1,26 @@
+Homework 2
+
+Jianxiang Fan
+jianxiang.fan@colorado.edu
+
+> Main Scripts:
+(1) mosaics.m
+(2) fill_billboard.m
+
+> mosaics.m
+First, choose an example to do image mosaics. There are three examples available.
+
+Then, pick a point in the left image, and its corresponding point in the right image. Pick 5 pairs totally.
+
+The result of image mosaics will be showed and saved as a new file.
+
+> fill_billboard.m
+A street view image is showed. 
+
+Select the billboard from the image, picking the corners in clockwise order starting from the left top one.
+
+The billboard will be filled with another image.
+
+
+
+
